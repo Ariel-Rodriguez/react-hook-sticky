@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { useStickyContext } from "react-hook-sticky";
 
 import { Cart } from "./components/cart";
-import { useStickyContext } from "./components/sticky";
 
 import "./styles.css";
 
@@ -20,7 +20,8 @@ function App() {
         <aside className="aside">
           <Cart
             items={items}
-            onAddItem={() => addItems([...items, items.length + 1])}
+            onAddItemClick={() => addItems([...items, items.length + 1])}
+            onRemoveItemClick={() => addItems(items.slice(1))}
           />
         </aside>
       </main>
