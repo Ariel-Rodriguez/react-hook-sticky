@@ -1,5 +1,13 @@
 # React-Hook-Sticky
 
+A modular starter hook for easy access development of sticky behavior.
+Start to collaborate and share all kind of sticky strategies into single place, single hook and quick development.
+
+
+## Demo
+
+https://codesandbox.io/s/react-hook-sticky-ts0rb
+
 ## Install
 
     $ yarn add react-hook-sticky

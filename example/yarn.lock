@@ -8164,10 +8164,10 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
-react-hook-sticky@^0.1.0:
-  version "0.1.0-beta"
-  resolved "https://registry.npmjs.org/react-hook-sticky/-/react-hook-sticky-0.1.0-beta.tgz#b6fa6b9fa9078633f8ebda7768e8e7d298bd918d"
-  integrity sha512-xcMOIgl1dW9kWRnkr0Hmwj2N3KHgwI808xuHQZyDlDuR5lxVhbpb9VgkEg9dCppJanb2PrJ9d5dw4/Yvp/yVXg==
+react-hook-sticky@^0.1.0-beta.1:
+  version "0.1.0-beta.1"
+  resolved "https://registry.npmjs.org/react-hook-sticky/-/react-hook-sticky-0.1.0-beta.1.tgz#03376af3694731b855ecc6ba0acea98da3952d7f"
+  integrity sha512-dKcPPFbAbHP5QvvUFh2/pWHA/3hYnwUOZJk96YKbSHQxqeJkx7HGFhOcG5sUY1pgMNAIuGxwFuAuUIgwfS+Ymg==
 
 react-is@^16.8.1, react-is@^16.8.4:
   version "16.12.0"

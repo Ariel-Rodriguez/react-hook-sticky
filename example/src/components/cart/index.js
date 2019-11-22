@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { throttle } from "lodash-es";
 import { useSticky, fillBetween } from "react-hook-sticky";
 
