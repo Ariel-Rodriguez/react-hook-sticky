@@ -2,7 +2,12 @@
   "name": "react-hook-sticky",
   "version": "0.1.0-beta.2",
   "description": "React hook sticky",
-  "keywords": ["react", "react-sticky", "sticky-hook", "sticky"],
+  "keywords": [
+    "react",
+    "react-sticky",
+    "sticky-hook",
+    "sticky"
+  ],
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -14,6 +19,13 @@
     "react-dom": ">=16.8.6"
   },
   "devDependencies": {
+    "eslint": "6.7.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "7.16.0",
+    "husky": "3.1.0",
+    "prettier": "1.19.1",
+    "pretty-quick": "2.0.1",
     "react-scripts": "3.0.1",
     "typescript": "3.3.3"
   },
@@ -21,12 +33,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "prettier --write {example,lib}/**/*{.js,.json,.scss}"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 11",
+    "not ie <= 10",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }

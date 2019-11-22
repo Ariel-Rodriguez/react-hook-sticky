@@ -1,4 +1,4 @@
-.cart {
+.nav {
   position: relative;
   display: flex;
 
@@ -7,7 +7,7 @@
   max-height: 100vh;
 }
 
-.cart-wrapper {
+.nav-wrapper {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   width: 100%;
 }
 
-.cart-header {
+.nav-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,28 +29,28 @@
   background: grey;
 }
 
-.cart-body {
+.nav-body {
   display: flex;
   padding: 8px;
   overflow: auto;
   max-height: 100vh;
 }
 
-.cart-list {
+.nav-list {
   flex: 1 1 auto;
   width: 100%;
 }
 
-.cart-listitem {
+.nav-listitem {
   padding: 16px 4px;
   border: 1px solid black;
 }
 
-.cart-listitem + .cart-listitem {
+.nav-listitem + .nav-listitem {
   border-top: 0;
 }
 
-.cart-footer {
+.nav-footer {
   display: flex;
   justify-content: center;
   align-items: center;
