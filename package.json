@@ -1,9 +1,14 @@
 {
   "name": "react-hook-sticky",
-  "version": "0.1.0-beta.1",
-  "description": "",
-  "keywords": [],
+  "version": "0.1.0-beta.2",
+  "description": "React hook sticky",
+  "keywords": ["react", "react-sticky", "sticky-hook", "sticky"],
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ariel-Rodriguez/react-hook-sticky.git"
+  },
+  "author": "Ariel Fernando Rodriguez",
   "peerDependencies": {
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"

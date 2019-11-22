@@ -1,6 +1,6 @@
 import React from "react";
 import { throttle } from "lodash-es";
-import { useSticky, fillBetween } from "react-hook-sticky";
+import { useSticky, boundaries } from "react-hook-sticky";
 
 import "./cart-style.scss";
 
@@ -12,7 +12,7 @@ const Item = () => (
 
 const stickyCartConfig = {
   context: "cart",
-  onUpdate: throttle(fillBetween, 10)
+  onUpdate: throttle(boundaries.fillBetween, 10)
 };
 
 const Cart = props => {
