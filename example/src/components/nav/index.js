@@ -17,11 +17,11 @@ const stickyNavConfig = {
 
 const Nav = props => {
   const { items, onAddItemClick, onRemoveItemClick } = props;
-  const { registerAs } = useSticky(stickyNavConfig);
+  const { createBoundary } = useSticky(stickyNavConfig);
 
   return (
     <div className="nav">
-      <div className="nav-wrapper" ref={registerAs('sticky')}>
+      <div className="nav-wrapper" ref={createBoundary('sticky')}>
         <div className="nav-header">nav</div>
         <button className="button" onClick={onAddItemClick}>
           Add item

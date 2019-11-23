@@ -8,11 +8,11 @@ import './styles.css';
 
 function App() {
   const [items, addItems] = useState([1]);
-  const { registerAs } = useStickyContext('nav');
+  const { createBoundary } = useStickyContext('nav');
 
   return (
     <div className="App">
-      <header className="header" ref={registerAs('boundaryTop')}>
+      <header className="header" ref={createBoundary('top')}>
         header
       </header>
       <main className="main">
@@ -25,7 +25,7 @@ function App() {
           />
         </aside>
       </main>
-      <footer className="footer" ref={registerAs('boundaryBottom')}>
+      <footer className="footer" ref={createBoundary('bottom')}>
         footer
       </footer>
     </div>
