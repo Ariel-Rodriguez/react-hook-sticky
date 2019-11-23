@@ -48,7 +48,9 @@ Would you like to contribute? Here are some nice to have ideas:
 
 ## Install
 
-\$ yarn add react-hook-sticky --exact
+```bash
+yarn add react-hook-sticky --exact
+```
 
 ## Quickstart
 
@@ -193,6 +195,26 @@ export const StickyComponent = props => {
     </section>
   );
 };
+```
+
+## How to develop local
+
+### Setup
+
+```bash
+  git clone git@github.com:Ariel-Rodriguez/react-hook-sticky.git
+  yarn
+  # Link library
+  yarn link
+  # install and link library into example
+  # any change done in library will be hor reloaded in example page.
+  cd example && yarn && yarn link react-hook-sticky
+```
+
+### Run examples
+
+```bash
+  yarn start
 ```
 
 ## Share or contribute!

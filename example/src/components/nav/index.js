@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { throttle } from 'lodash-es';
 import { useSticky, boundaries } from 'react-hook-sticky';
 
@@ -12,7 +13,7 @@ const Item = () => (
 
 const stickyNavConfig = {
   context: 'nav',
-  onUpdate: throttle(boundaries.fillBetween, 10),
+  onUpdate: throttle(boundaries.fillBetween, 16),
 };
 
 const Nav = props => {
@@ -21,7 +22,10 @@ const Nav = props => {
 
   return (
     <div className="nav">
-      <div className="nav-wrapper" ref={createBoundary('sticky')}>
+      <div
+        className="nav-wrapper"
+        ref={createBoundary('sticky', { minHeight: 180 })}
+      >
         <div className="nav-header">nav</div>
         <button className="button" onClick={onAddItemClick}>
           Add item
@@ -41,6 +45,12 @@ const Nav = props => {
       </div>
     </div>
   );
+};
+
+Nav.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onAddItemClick: PropTypes.func.isRequired,
+  onRemoveItemClick: PropTypes.func.isRequired,
 };
 
 export { Nav };
