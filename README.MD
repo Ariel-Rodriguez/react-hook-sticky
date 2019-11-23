@@ -108,7 +108,7 @@ Contribute and create your own plug-in right away.
 
 ### Quick
 
-- Fork sandbox development https://codesandbox.io/s/react-hook-sticky-r6vnp
+- Fork demo https://codesandbox.io/s/react-hook-sticky-ts0rb
 - Create your sticky logic
 
 ```jsx
