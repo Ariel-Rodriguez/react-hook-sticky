@@ -40,7 +40,13 @@ body {
 }
 
 .footer {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
   height: 1950px;
   background: lightgrey;
+}
+
+.column {
+  flex: 1 1 auto;
 }

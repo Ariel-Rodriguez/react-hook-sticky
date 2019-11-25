@@ -19,14 +19,14 @@
 <span><img src="https://image.flaticon.com/icons/svg/220/220603.svg" alt="chrome" width="32"></span>
 <span><img src="https://image.flaticon.com/icons/svg/179/179337.svg" alt="safari" width="32"></span>
 
-# React-Hook-Sticky
+# React hook sticky
 
-A lightweight modular starter hook for easy development and enrich component with stickiness.
-Start to collaborate and share your sticky strategy as performant as possible.
+Top performant lightweight solution for sticky components.
+Start to collaborate and share your sticky plugin.
 
-:warning: Currently in beta development and API may change soon.
+:warning: Beta version - creating an stable release soon.
 
-Provide your ideas for better development experience or what would you like to improve.
+Provide your ideas, feel free to contribute.
 
 ## Demo
 
@@ -36,7 +36,8 @@ https://codesandbox.io/s/react-hook-sticky-ts0rb
 
 Would you like to contribute? Here are some nice to have ideas:
 
-- [ ] Add sticky boundaries strategies and examples.
+- [ ] Add plugins.
+- [ ] Storybook and examples.
 - [ ] Add development runtime invalidations for warning and error check.
 - [ ] Create Wiki Page.
 - [ ] Add unit test.
@@ -54,49 +55,49 @@ yarn add react-hook-sticky --exact
 
 ## Quickstart
 
+#### Basic
+
 ```jsx
 // sticky-component.js
 import React from 'react';
 // 1 - Import
-import { useSticky, boundaries } from 'react-hook-sticky';
+import { useSticky, plugins } from 'react-hook-sticky';
 
 const stickyConfig = {
   // Define the context for this sticky, you may have many sticky elements.
   context: 'my-sticky-1',
   // 2 - Select the plugin to use (you may combine with throttling or wrap as your needs)
-  onUpdate: throttle(boundaries.fillBetween, 10),
+  onUpdate: throttle(plugins.fillBetween, 10),
 };
 
 export const StickyComponent = props => {
   const { registerBoundary } = useSticky(stickyConfig);
 
   return (
-    <div className="sticky">
+    <div className="sticky-outer" ref={registerBoundary('outer')}>
       {/* 3 - Register the target to become sticky */}
-      <div className="sticky-wrapper" ref={registerBoundary('sticky')}>
-        <StickyContent />
+      <div className="sticky" ref={registerBoundary('sticky')}>
+        I am sticky between outer height or screen height
       </div>
     </div>
   );
 };
 ```
 
+#### Optional define specific boundaries
+
 ```jsx
-// other file
-import React from 'react';
-import { useStickyContext } from 'react-hook-sticky';
-
-import { StickyComponent } from '@components/sticky-component';
-
-export const App = props => {
-  // 4 - Add the target boundaries to your sticky context.
-  const { registerBoundary } = useStickyContext('my-sticky-1');
+export const StickyComponent = props => {
+  const { registerBoundary } = useSticky(stickyConfig);
 
   return (
-    <div className="content">
-      <header ref={registerBoundary('top')} />
-      <StickyComponent />
-      <footer ref={registerBoundary('bottom')} />
+    <div className="sticky-outer">
+      <h1 ref={registerBoundary('top')}>Top boundary</h1>
+      {/* 3 - Register the target to become sticky */}
+      <div className="sticky" ref={registerBoundary('sticky')}>
+        I am sticky between top and bottom boundaries or screen height
+      </div>
+      <div ref={registerBoundary('bottom')}>Bottom boundary</div>
     </div>
   );
 };
@@ -114,56 +115,35 @@ Contribute and create your own plug-in right away.
 ```jsx
 // You may reuse common code and tools
 import {
-  fixBetween,
   useMomentum,
-  getBoundingClientRect,
-  setStyle,
-} from 'react-hook-sticky/commons';
+  getClampArea,
+  createStyle,
+  setInlineStyle,
+} from '../commons';
 
 // Explode your creativity, create your new module sticky to later being integrated
-export const stickyJumpDraft = (context, event) => {
-  // Define the expected boundaries to find and check for actions
-  const { sticky, top, bottom, jumpMe } = context.boundaries;
-  const { isGoingDown } = useMomentum(event);
-  const stickyEl = sticky.element;
+export const bunnyJump = (context, event) => {
+  const { id: cacheKey, boundaries } = context;
+  const stickyBoundary = boundaries.sticky;
+  const clampArea = getClampArea(boundaries);
 
-  if (!sticky || !top || !bottom) {
+  if (!stickyBoundary || !clampArea.height) {
     return;
   }
-  const [topRect, bottomRect, stickyRect] = getBoundingClientRect([
-    top.element,
-    bottom.element,
-    sticky.el,
-  ]);
 
-  // Sample logic. Here i just expect to find "jumpMe" registered boundaries, and check whenever the target has to jump these.
-  let nextPosition = {};
-  const touchingTo = jumpMe.find((candidate, idx) => {
-    const touchingRect = candidate.getBoundingClientRect();
+  const nextPosition = {
+    position: 'absolute',
+    maxHeight: clampArea.height,
+  };
+  const { isGoingDown } = useMomentum(event);
 
-    if (isGoingDown) {
-      if (stickyRect.bottom > touchingRect.top) {
-        nextPosition = fixBetween(
-          stickyRect,
-          touchingRect || topRect,
-          jumpMe[idx + 1] || bottomRect
-        );
-        return true;
-      }
-    } else {
-      if (stickyRect.top < touchingRect.bottom) {
-        nextPosition = fixBetween(
-          stickyRect,
-          jumpMe[idx - 1] || bottomRect,
-          candidate || topRect
-        );
-        return true;
-      }
-    }
-    return false;
-  });
+  if (isGoingDown) {
+    nextPosition.top = clampArea.top;
+  } else {
+    nextPosition.bottom = clampArea.bottom;
+  }
 
-  setStyle(sticky, nextPosition);
+  setInlineStyle(stickyBoundary, createStyle(nextPosition), cacheKey);
 };
 ```
 
@@ -171,7 +151,7 @@ export const stickyJumpDraft = (context, event) => {
 
 ```jsx
 // 1 - Import your snippet
-import { stickyJumpDraft } from './sticky-jump-draft';
+import { bunnyJump } from './sticky-jump-draft';
 
 import { useSticky } from 'react-hook-sticky';
 
@@ -179,7 +159,7 @@ const stickyConfig = {
   context: 'stickyJump',
 
   // 2 - Register it!
-  onUpdate: stickyJumpDraft,
+  onUpdate: bunnyJump,
 };
 
 export const StickyComponent = props => {

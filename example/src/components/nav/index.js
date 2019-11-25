@@ -13,7 +13,7 @@ const Item = () => (
 
 const stickyNavConfig = {
   context: 'nav',
-  onUpdate: throttle(boundaries.fillBetween, 16),
+  onUpdate: throttle(boundaries.fillBetween, 1),
 };
 
 const Nav = props => {
