@@ -27,6 +27,8 @@ body {
 }
 
 .content {
+  position: relative;
+
   flex: 1 1 auto;
   height: 700px;
 

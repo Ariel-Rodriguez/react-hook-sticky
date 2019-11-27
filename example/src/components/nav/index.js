@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { throttle } from 'lodash-es';
-import { useSticky, boundaries } from 'react-hook-sticky';
+import { useSticky, plugins } from 'react-hook-sticky';
 
 import './nav-style.scss';
 
@@ -13,7 +13,11 @@ const Item = () => (
 
 const stickyNavConfig = {
   context: 'nav',
-  onUpdate: throttle(boundaries.fillBetween, 1),
+  plugin: throttle(plugins.fillBetween, 1),
+};
+
+const stickyBoundaryProps = {
+  minHeight: 180,
 };
 
 const Nav = props => {
@@ -24,7 +28,7 @@ const Nav = props => {
     <div className="nav">
       <div
         className="nav-wrapper"
-        ref={createBoundary('sticky', { minHeight: 180 })}
+        ref={createBoundary('sticky', stickyBoundaryProps)}
       >
         <div className="nav-header">nav</div>
         <button className="button" onClick={onAddItemClick}>
@@ -39,7 +43,7 @@ const Nav = props => {
         </div>
         <div className="nav-footer">
           <button className="button" onClick={onRemoveItemClick}>
-            button
+            Remove item
           </button>
         </div>
       </div>

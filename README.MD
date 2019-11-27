@@ -67,7 +67,7 @@ const stickyConfig = {
   // Define the context for this sticky, you may have many sticky elements.
   context: 'my-sticky-1',
   // 2 - Select the plugin to use (you may combine with throttling or wrap as your needs)
-  onUpdate: throttle(plugins.fillBetween, 10),
+  plugin: throttle(plugins.fillBetween, 10),
 };
 
 export const StickyComponent = props => {
@@ -123,7 +123,7 @@ import {
 
 // Explode your creativity, create your new module sticky to later being integrated
 export const bunnyJump = (context, event) => {
-  const { id: cacheKey, boundaries } = context;
+  const { cacheStyles, boundaries } = context;
   const stickyBoundary = boundaries.sticky;
   const clampArea = getClampArea(boundaries);
 
@@ -143,7 +143,7 @@ export const bunnyJump = (context, event) => {
     nextPosition.bottom = clampArea.bottom;
   }
 
-  setInlineStyle(stickyBoundary, createStyle(nextPosition), cacheKey);
+  setInlineStyle(stickyBoundary, createStyle(nextPosition), cacheStyles);
 };
 ```
 
@@ -159,7 +159,7 @@ const stickyConfig = {
   context: 'stickyJump',
 
   // 2 - Register it!
-  onUpdate: bunnyJump,
+  plugin: bunnyJump,
 };
 
 export const StickyComponent = props => {
