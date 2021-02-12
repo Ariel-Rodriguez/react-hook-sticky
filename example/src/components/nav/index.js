@@ -18,6 +18,7 @@ const stickyNavConfig = {
 
 const stickyBoundaryProps = {
   minHeight: 180,
+  activeClass: '__sticky',
 };
 
 const Nav = props => {
@@ -30,7 +31,7 @@ const Nav = props => {
         className="nav-wrapper"
         ref={createBoundary('sticky', stickyBoundaryProps)}
       >
-        <div className="nav-header">nav</div>
+        <div className="nav-header"></div>
         <button className="button" onClick={onAddItemClick}>
           Add item
         </button>

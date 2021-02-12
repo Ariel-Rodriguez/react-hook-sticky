@@ -10,11 +10,15 @@
 .nav-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: limegreen;
 
   min-height: 180px;
   width: 100%;
   transform: translateZ(0);
+}
+
+.nav-wrapper.__sticky {
+  background-color: white;
 }
 
 .nav-header {

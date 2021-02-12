@@ -27,6 +27,7 @@
     "dotenv-expand": "4.2.0",
     "eslint": "6.7.0",
     "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-react-hooks": "^1.5.0",
