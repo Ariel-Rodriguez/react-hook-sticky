@@ -24,6 +24,9 @@ example/node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+yarn.lock
+example/yarn.lock
+
 .DS_Store
 dist
 build
