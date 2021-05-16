@@ -13,10 +13,10 @@
 </p>
 </div>
 
+<span><img src="https://image.flaticon.com/icons/svg/220/220603.svg" alt="chrome" width="32"></span>
 <span><img src="https://image.flaticon.com/icons/svg/888/888914.svg" alt="ie 10" width="32"></span>
 <span><img src="https://image.flaticon.com/icons/svg/888/888899.svg" alt="edge" width="32"></span>
 <span><img src="https://image.flaticon.com/icons/svg/1177/1177512.svg" alt="firefox" width="32"></span>
-<span><img src="https://image.flaticon.com/icons/svg/220/220603.svg" alt="chrome" width="32"></span>
 <span><img src="https://image.flaticon.com/icons/svg/179/179337.svg" alt="safari" width="32"></span>
 
 # React hook sticky
@@ -24,13 +24,13 @@
 Top performant lightweight solution for sticky components.
 Start to collaborate and share your sticky plugin.
 
-:warning: Beta version - creating an stable release soon.
-
 Provide your ideas, feel free to contribute.
 
 ## Demo
 
-https://codesandbox.io/s/react-hook-sticky-ts0rb
+![sticky](https://user-images.githubusercontent.com/464285/118393748-f0db5400-b640-11eb-978a-e5205276ac8b.gif)
+
+[react-hook-sticky-playground](https://codesandbox.io/s/github/Ariel-Rodriguez/react-hook-sticky-playground/tree/main/?autoresize=1&fontsize=14&hidenavigation=1&theme=dark)
 
 ## Roadmap
 
@@ -66,17 +66,17 @@ import { useSticky, plugins } from 'react-hook-sticky';
 const stickyConfig = {
   // Define the context for this sticky, you may have many sticky elements.
   context: 'my-sticky-1',
-  // 2 - Select the plugin to use (you may combine with throttling or wrap as your needs)
-  plugin: throttle(plugins.fillBetween, 10),
+  // 2 - Make use of builtin plugins
+  plugin: plugins.fillBetween, // you may combine with throttling or wrap as your needs throttle(plugins.fillBetween, 10),
 };
 
 export const StickyComponent = props => {
-  const { registerBoundary } = useSticky(stickyConfig);
+  const { createBoundary } = useSticky(stickyConfig);
 
   return (
-    <div className="sticky-outer" ref={registerBoundary('outer')}>
+    <div className="sticky-outer" ref={createBoundary('outer')}>
       {/* 3 - Register the target to become sticky */}
-      <div className="sticky" ref={registerBoundary('sticky')}>
+      <div className="sticky" ref={createBoundary('sticky')}>
         I am sticky between outer height or screen height
       </div>
     </div>
@@ -88,16 +88,16 @@ export const StickyComponent = props => {
 
 ```jsx
 export const StickyComponent = props => {
-  const { registerBoundary } = useSticky(stickyConfig);
+  const { createBoundary } = useSticky(stickyConfig);
 
   return (
     <div className="sticky-outer">
-      <h1 ref={registerBoundary('top')}>Top boundary</h1>
+      <h1 ref={createBoundary('top')}>Top boundary</h1>
       {/* 3 - Register the target to become sticky */}
-      <div className="sticky" ref={registerBoundary('sticky')}>
+      <div className="sticky" ref={createBoundary('sticky')}>
         I am sticky between top and bottom boundaries or screen height
       </div>
-      <div ref={registerBoundary('bottom')}>Bottom boundary</div>
+      <div ref={createBoundary('bottom')}>Bottom boundary</div>
     </div>
   );
 };
@@ -163,15 +163,15 @@ const stickyConfig = {
 };
 
 export const StickyComponent = props => {
-  const { registerBoundary } = useSticky(stickyConfig);
+  const { createBoundary } = useSticky(stickyConfig);
 
   return (
-    <section ref={registerBoundary('top')}>
-      <div className="ad" ref={registerBoundary('sticky')} />
+    <section ref={createBoundary('top')}>
+      <div className="ad" ref={createBoundary('sticky')} />
       {/* Registering boundaries all in one collection under stickyJump context */}
-      <div className="block" ref={registerBoundary(['jumpMe'])} />
-      <div className="block" ref={registerBoundary(['jumpMe'])} />
-      <div className="block" ref={registerBoundary('bottom')} />
+      <div className="block" ref={createBoundary(['jumpMe'])} />
+      <div className="block" ref={createBoundary(['jumpMe'])} />
+      <div className="block" ref={createBoundary('bottom')} />
     </section>
   );
 };
