@@ -68,6 +68,12 @@ const stickyConfig = {
   context: 'my-sticky-1',
   // 2 - Make use of builtin plugins
   plugin: plugins.fillBetween, // you may combine with throttling or wrap as your needs throttle(plugins.fillBetween, 10),
+
+  // Optional - Specify the proper event listener strategy for better performance over any browser.
+  // default { passive: true } https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
+  eventListenerOptions: Modernizr.passiveeventlisteners
+    ? { passive: true }
+    : false,
 };
 
 export const StickyComponent = props => {
